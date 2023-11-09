@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://wicg.github.io/private-network-access/" rel="canonical">
-  <meta content="4e1d063a577bc776f9784c24b47ce9d3ea4f5074" name="document-revision">
+  <meta content="0d95ff9810b27c724c9df4bb8db9b9f9cced4faf" name="document-revision">
 <style>
   ul.toc ul ul ul {
     margin: 0 0 0 2em;
@@ -1414,7 +1414,7 @@ Private-Network-Access-ID: "01:23:45:67:89:0A"
   values</a> given
   "<a data-link-type="http-header" href="#http-headerdef-private-network-access-id" id="ref-for-http-headerdef-private-network-access-id②"><code>Private-Network-Access-ID</code></a>" and <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list①">header list</a>.</p>
            <li data-md>
-            <p>if <var>targetId</var> does not a string of 6 hexadecimal bytes
+            <p>if <var>targetId</var> is not a string of 6 hexadecimal bytes
   separated by colons, return a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-network-error" id="ref-for-concept-network-error⑦">network error</a>.</p>
            <li data-md>
             <p>Let <var>targetName</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#extract-header-list-values" id="ref-for-extract-header-list-values②">extracting header list
@@ -1480,7 +1480,7 @@ appended with the following step right before setting <a data-link-type="dfn" hr
          <dt>public 
          <dd>Set <var>request</var>’s <a data-link-type="dfn" href="#request-target-ip-address-space" id="ref-for-request-target-ip-address-space①⑤">target IP address space</a> to <a data-link-type="dfn" href="#ip-address-space-public" id="ref-for-ip-address-space-public①①">public</a> 
          <dt>private 
-         <dd>Set <var>request</var>’s <a data-link-type="dfn" href="#request-target-ip-address-space" id="ref-for-request-target-ip-address-space①⑥">target IP address space</a> to <a data-link-type="dfn" href="#ip-address-space-private" id="ref-for-ip-address-space-private①⑦">private</a> 
+         <dd>Set <var>request</var>’s <a data-link-type="dfn" href="#request-target-ip-address-space" id="ref-for-request-target-ip-address-space①⑥">target IP address space</a> to <a data-link-type="dfn" href="#ip-address-space-private" id="ref-for-ip-address-space-private①⑦">private</a>. 
          <dt>local 
          <dd>Set <var>request</var>’s <a data-link-type="dfn" href="#request-target-ip-address-space" id="ref-for-request-target-ip-address-space①⑦">target IP address space</a> to <a data-link-type="dfn" href="#ip-address-space-local" id="ref-for-ip-address-space-local⑦">local</a> 
         </dl>
