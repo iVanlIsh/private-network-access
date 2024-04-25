@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://wicg.github.io/private-network-access/" rel="canonical">
-  <meta content="fb06e041fe6e46cd54ba4870759b87d3cb23c706" name="document-revision">
+  <meta content="3d2b57e3173ef1917cec313a263cfcd577511fb4" name="document-revision">
 <style>
   ul.toc ul ul ul {
     margin: 0 0 0 2em;
@@ -675,7 +675,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1>Private Network Access</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-04-24">24 April 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2024-04-25">25 April 2024</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -683,10 +683,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt>Issue Tracking:
      <dd><a href="https://github.com/wicg/private-network-access/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
-     <dt class="editor">Editors:
+     <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard" data-editor-id="124486"><a class="p-name fn u-email email" href="mailto:titouan@google.com">Titouan Rigoudy</a> (<span class="p-org org">Google</span>)
-     <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:phao@google.com">Jonathan Hao</a> (<span class="p-org org">Google</span>)
-     <dd class="editor p-author h-card vcard" data-editor-id="124886"><a class="p-name fn u-email email" href="mailto:lyf@google.com">Yifan Luo</a> (<span class="p-org org">Google</span>)
      <dt class="editor">Former Editor:
      <dd class="editor p-author h-card vcard" data-editor-id="56384"><a class="p-name fn u-email email" href="mailto:mkwst@google.com">Mike West</a> (<span class="p-org org">Google</span>)
     </dl>
@@ -729,7 +727,7 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
         <li><a href="#example-deny-by-default"><span class="secno">1.2.1</span> <span class="content">Secure by Default</span></a>
         <li><a href="#example-opt-in"><span class="secno">1.2.2</span> <span class="content">Opting-In</span></a>
         <li><a href="#shortlinks"><span class="secno">1.2.3</span> <span class="content">Navigation</span></a>
-        <li><a href="#shortlinks①"><span class="secno">1.2.4</span> <span class="content">Mixed Content</span></a>
+        <li><a href="#example-mixed-content"><span class="secno">1.2.4</span> <span class="content">Mixed Content</span></a>
        </ol>
      </ol>
     <li>
@@ -943,41 +941,40 @@ Location: https://sekrits/super-sekrit-project-with-super-sekrit-partner
      <p>The navigation will proceed normally, but <code>mail.mega.corp</code> won’t be
     considered CORS-same-origin with the response.</p>
     </div>
-    <h4 class="heading settled" data-level="1.2.4" id="shortlinks①"><span class="secno">1.2.4. </span><span class="content">Mixed Content</span><a class="self-link" href="#shortlinks①"></a></h4>
-    <div class="example" id="example-51f47ebd">
-     <a class="self-link" href="#example-51f47ebd"></a> Some of MegaCorp Inc’s devices do not have unique origin so as they can not
-    be connected over a secure channel (HTTPS, for example). However, they still
-    want to talk to the public internet for various reasons. They can explicitly
-    opt-in with an insecure connection with user allowrance. 
+    <h4 class="heading settled" data-level="1.2.4" id="example-mixed-content"><span class="secno">1.2.4. </span><span class="content">Mixed Content</span><a class="self-link" href="#example-mixed-content"></a></h4>
+    <div class="example" id="example-79471f83">
+     <a class="self-link" href="#example-79471f83"></a> Some of MegaCorp Inc’s devices lack unique origins, preventing them from
+    connecting through secure channels (e.g., HTTPS). However, these devices may
+    still want to communicate with the public websites. They can opt-in to an
+    insecure connection with secure public websites if explicitly allowed by
+    users. 
      <p>When a website with a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-origin" id="ref-for-potentially-trustworthy-origin">potentially trustworthy origin</a> on the public
-    internet makes a request to the device, the user agent determines that the
-    requestor is <a data-link-type="dfn" href="#ip-address-space-public" id="ref-for-ip-address-space-public①">public</a>, and the router is <a data-link-type="dfn" href="#ip-address-space-private" id="ref-for-ip-address-space-private②">private</a> and is not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-origin" id="ref-for-potentially-trustworthy-origin①">potentially trustworthy origin</a>. This means that requests will not only
-    trigger a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#cors-preflight-request" id="ref-for-cors-preflight-request⑤">CORS-preflight request</a>, but also show a permission prompt to
-    the user after receiving correct preflight response.</p>
+    internet requests data from the device, the user agent recognizes the
+    requestor as <a data-link-type="dfn" href="#ip-address-space-public" id="ref-for-ip-address-space-public①">public</a>, and the device as <a data-link-type="dfn" href="#ip-address-space-private" id="ref-for-ip-address-space-private②">private</a> (not a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-secure-contexts/#potentially-trustworthy-origin" id="ref-for-potentially-trustworthy-origin①">potentially trustworthy origin</a>).
+    This triggers both a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#cors-preflight-request" id="ref-for-cors-preflight-request⑤">CORS-preflight request</a> and a permission prompt to
+    the user (after receiving the correct preflight response).</p>
      <p>Website need to explicitly claim the <code class="idl"><a data-link-type="idl" href="#enumdef-ipaddressspace" id="ref-for-enumdef-ipaddressspace">IPAddressSpace</a></code> as a <code>fetch()</code> API
     option:</p>
 <pre class="highlight">fetch<c- p>(</c-><c- u>"http://router.local/ping"</c-><c- p>,</c-> <c- p>{</c->
   targetAddressSpace<c- o>:</c-> <c- u>"private"</c-><c- p>,</c->
 <c- p>});</c->
 </pre>
-     <p>The device can grant access by expliciting the allowrance and provide a
-    unique device ID and a user-friendly device name as its headers in the
-    response to the preflight request. For the above request, that might look
-    like:</p>
+     <p>The device can grant access by explicitly indicating permission and provide
+    a unique device ID and a user-friendly device name in the preflight response
+    headers. An example response to the above request:</p>
 <pre>HTTP/1.1 200 OK
 ...
 <a data-link-type="http-header" href="https://fetch.spec.whatwg.org/#http-access-control-allow-origin" id="ref-for-http-access-control-allow-origin②">Access-Control-Allow-Origin</a>: https://mail.mega.corp
 <a data-link-type="http-header" href="https://fetch.spec.whatwg.org/#http-access-control-allow-methods" id="ref-for-http-access-control-allow-methods②">Access-Control-Allow-Methods</a>: GET
 <a data-link-type="http-header" href="https://fetch.spec.whatwg.org/#http-access-control-allow-credentials" id="ref-for-http-access-control-allow-credentials②">Access-Control-Allow-Credentials</a>: true
 <a data-link-type="http-header" href="#http-headerdef-access-control-allow-private-network" id="ref-for-http-headerdef-access-control-allow-private-network③">Access-Control-Allow-Private-Network</a>: true
-<a data-link-type="http-header" href="#http-headerdef-private-network-access-id" id="ref-for-http-headerdef-private-network-access-id">Private-Network-Access-ID</a>: 00:00:00:00
+<a data-link-type="http-header" href="#http-headerdef-private-network-access-id" id="ref-for-http-headerdef-private-network-access-id">Private-Network-Access-ID</a>: 01:23:45:67:89:0A
 <a data-link-type="http-header" href="#http-headerdef-private-network-access-name" id="ref-for-http-headerdef-private-network-access-name">Private-Network-Access-Name</a>: userA’s MegaCorp device
 Content-Length: 0
 ...
 </pre>
-     <p>A permission prompt will show with the ID and name provided in the device
-    header. The request will proceed normally after that if the user allows that
-    user permission.</p>
+     <p>A permission prompt will appear, displaying the ID and name from the device
+    header. If the user grants permission, the request will proceed.</p>
     </div>
    </section>
    <section>
@@ -2075,7 +2072,7 @@ appended with the following step right before setting <a data-link-type="dfn" hr
    <dt id="biblio-secure-local-communication">[SECURE-LOCAL-COMMUNICATION]
    <dd><a href="http://www.w3.org/2015/10/28-local-minutes.html"><cite>Minutes from 'Secure communication with local network devices': TPAC, 2015</cite></a>. URL: <a href="http://www.w3.org/2015/10/28-local-minutes.html">http://www.w3.org/2015/10/28-local-minutes.html</a>
    <dt id="biblio-soho-pharming">[SOHO-PHARMING]
-   <dd>Team Cymru. <a href="https://331.cybersec.fun/docs/TeamCymruSOHOPharming.pdf"><cite>SOHO Pharming</cite></a>. URL: <a href="https://331.cybersec.fun/docs/TeamCymruSOHOPharming.pdf">https://331.cybersec.fun/docs/TeamCymruSOHOPharming.pdf</a>
+   <dd>Team Cymru. <a href="https://331.cybersec.fun/TeamCymruSOHOPharming.pdf"><cite>SOHO Pharming</cite></a>. URL: <a href="https://331.cybersec.fun/TeamCymruSOHOPharming.pdf">https://331.cybersec.fun/TeamCymruSOHOPharming.pdf</a>
    <dt id="biblio-trend-micro">[TREND-MICRO]
    <dd><a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=693"><cite>TrendMicro node.js HTTP server listening on localhost can execute commands</cite></a>. URL: <a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=693">https://bugs.chromium.org/p/project-zero/issues/detail?id=693</a>
   </dl>
